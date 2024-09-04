@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../Layout";
 import AppTable from "../../components/shared/Table";
 import Button from "../../components/ui/Button";
+import SingleSelect from "../../components/ui/Select";
 
 const Members = () => {
 
@@ -32,6 +33,7 @@ const Members = () => {
     <Layout>
       <section className="flex flex-1 justify-between items-center">
       <h1 className="text-2xl font-bold ml-10 mr-auto text-gray-900">Manage Members</h1>
+      <SingleSelect />
       <Button type="button" key={"member"} className="max-w-fit mx-8" onClick={()=>{}}>
         <a href="add-member">Add Member</a>
       </Button>

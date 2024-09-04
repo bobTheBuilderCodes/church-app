@@ -2,13 +2,14 @@ import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Field, Label, Switch } from "@headlessui/react";
 import Layout from "../Layout";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 export default function AddMember() {
   const [agreed, setAgreed] = useState(false);
 
   return (
     <Layout>
-      <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <div className="isolate px-6  sm:py-32 lg:px-8">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
@@ -32,9 +33,22 @@ export default function AddMember() {
         <form
           action="#"
           method="POST"
-          className="mx-auto mt-16 max-w-xl sm:mt-20"
+          className="mx-auto max-w-xl sm:mt-20"
         >
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+
+          <div className="col-span-full">
+              
+              <div className="flex justify-center items-center gap-x-3">
+                <UserCircleIcon aria-hidden="true" className="h-40 w-40 text-gray-300" />
+                <button
+                  type="button"
+                  className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                >
+                  Change
+                </button>
+              </div>
+            </div>
             <div>
               <label
                 htmlFor="first-name"

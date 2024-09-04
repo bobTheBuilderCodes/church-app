@@ -1,9 +1,20 @@
 import React from 'react'
 import Layout from '../Layout'
+import Birthday from '../../components/feature/birthday'
 
 const Analytics = () => {
   return (
-    <Layout>Analytics</Layout>
+    <Layout>
+      <div className='flex mx-10 justify-between'>
+      <main className='w-3/4'>
+        Main dashboard
+      </main>
+      <aside className='1/4'>
+
+      <Birthday />
+      </aside>
+      </div>
+    </Layout>
   )
 }
 

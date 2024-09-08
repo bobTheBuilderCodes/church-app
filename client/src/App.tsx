@@ -9,6 +9,7 @@ import Programs from "./dashboard/programs/Programs";
 import Analytics from "./dashboard/analytics/Analytics";
 import AddMember from "./dashboard/members/AddMember";
 import PageNotFound from "./dashboard/PageNotFound";
+import MemberDetails from "./components/feature/MemberDetails";
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
         <Route element={<PrivateRoute />}>
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/members" element={<Members />} />
+          <Route path="/members/:id" element={<MemberDetails tabs={[]} />} />
+          
           <Route path="/add-member" element={<AddMember />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/finance" element={<Finance />} />

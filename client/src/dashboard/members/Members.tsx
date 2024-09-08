@@ -1,9 +1,7 @@
 import React from "react";
 import Layout from "../Layout";
-import Button from "../../components/ui/Button";
-import SingleSelect from "../../components/ui/Select";
-import Input from "../../components/ui/Input";
 import { members } from "../../resources";
+import { useNavigate } from "react-router-dom";
 
 // Define the type for a member
 interface Member {
@@ -24,6 +22,8 @@ const Members = () => {
   // Ensure members is not undefined; use defaultMembers if needed
   const membersList = members || defaultMembers;
 
+  const navigate = useNavigate()
+
   return (
     <Layout>
       <section className="flex justify-between items-center">
@@ -39,7 +39,7 @@ const Members = () => {
       
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {membersList?.map((member) => (
-          <div key={member?.id} className="group relative">
+          <div key={member?.id} className="group relative" onClick={()=>navigate(`/members/${2}`)}>
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
               <img
                 alt={member?.imageAlt}
@@ -62,6 +62,7 @@ const Members = () => {
           </div>
         ))}
       </div>
+
     </Layout>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../Layout'
-import Birthday from '../../components/feature/birthday'
+import Birthday from '../../components/feature/Birthday'
 
 const Analytics = () => {
   return (

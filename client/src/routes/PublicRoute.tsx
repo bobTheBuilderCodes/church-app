@@ -8,7 +8,7 @@ interface PublicRouteProps {
 
 const PublicRoute: React.FC<PublicRouteProps> = ({ children }) => {
   // const token = localStorage.getItem('user');
-  const token = false
+  const token = true
   const location = useLocation();
 
   

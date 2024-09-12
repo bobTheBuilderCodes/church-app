@@ -20,7 +20,18 @@ interface VerticalTabsProps {
 const tabsInfo = [
     {
       label: "Basic Info",
-      content: <BasicInfo />,
+      content: <BasicInfo member={{
+        avatar: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Paul_Adefarasin.jpg",
+        firstName: "James",
+        lastName: "Patapaa",
+        email: "james.patapaa@gmail.com",
+        phone: "0245948393",
+        bio: "This is the man who works in every ministry.",
+        country: "Pipeano",
+        city: "Close to pentecost",
+        postalCode: "644",
+        taxId: "982"
+      }} />,
     },
     {
       label: "Finance",
@@ -41,9 +52,9 @@ const MemberDetails: React.FC<VerticalTabsProps> = ({ tabs }) => {
 
   return (
    <Layout>
-     <div className="flex flex-col md:flex-row">
+     <div className="flex flex-col md:flex-row  justify-center">
       {/* Sidebar with Tab Labels */}
-      <div className="md:w-1/4 w-full bg-gray-100 p-4 md:border-r h-[87vh] flex flex-col justify-between">
+      <div className="md:w-1/4 w-full bg-gray-100 p-2 md:border-r h-[87vh] flex flex-col justify-between">
         {/* Tab Buttons */}
         <div>
           {tabsInfo.map((tab, index) => (
@@ -63,14 +74,14 @@ const MemberDetails: React.FC<VerticalTabsProps> = ({ tabs }) => {
 
         {/* Delete Account Button - Hidden on Mobile */}
         <div className="mt-auto hidden md:block">
-          <Button className="text-red-500 bg-red-50 w-full" type="button">
+          <Button className="text-red-500 bg-red-500 w-full" type="button">
             Delete Account
           </Button>
         </div>
       </div>
 
       {/* Content Area */}
-      <div className="md:w-3/4 w-full bg-white p-6">
+      <div className="md:w-3/4 w-full bg-white py-3">
         {tabsInfo[activeTab].content}
       </div>
     </div>

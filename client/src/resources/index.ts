@@ -46,3 +46,13 @@ export const members = [
     // More members...
   ]
 
+  const member = {
+    id: '1',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    phone: '555-1234',
+    membershipStatus: 'Active',
+    involvement: ['Choir', 'Bible Study Group', 'Youth Fellowship'],
+    joinDate: '2020-05-15',
+  };

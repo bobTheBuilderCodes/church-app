@@ -1,21 +1,71 @@
-import React from 'react'
-import Layout from '../Layout'
-import Birthday from '../../components/feature/Birthday'
+import React from 'react';
+import Layout from '../Layout';
+import Birthday from '../../components/feature/Birthday';
+import Card from '../../components/ui/DashboardCard';
+import { barChartData, chartData, chartOptions, pieChartData } from '../../resources';
+import LineChart from '../../components/feature/LineGraph';
+import BarChart from '../../components/feature/BarChart';
+import PieChart from '../../components/feature/PieChart';
 
-const Analytics = () => {
+// Icon for user
+const user = (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+  </svg>
+);
+
+const Analytics: React.FC = () => {
   return (
     <Layout>
-      <div className='flex mx-10 justify-between'>
-      <main className='w-3/4'>
-        Main dashboard
-      </main>
-      <aside className='1/4'>
+      <div className="md:px-6 space-y-6">
+        {/* Top Section: Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Card title="Total Members" value="150" icon={user} />
+          <Card title="Active Members" value="80" icon={user} />
+          <Card title="Donations Received" value="GHC 12,340" icon={user} />
+          <Card title="Upcoming Events" value="5" icon={user} />
+        </div>
 
-      <Birthday />
-      </aside>
+        {/* Middle Section: Graphs and Active Members */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          {/* Graph Area */}
+          <div className="lg:col-span-3 space-y-4">
+            <div className="bg-white shadow rounded-lg p-4 h-auto">
+              <h3 className="text-lg font-semibold">Church Membership</h3>
+              <div className="w-full h-80">
+                <LineChart chartData={chartData} chartOptions={chartOptions} />
+              </div>
+            </div>
+
+            {/* Container for Bar and Pie Charts */}
+            <div className="flex flex-col lg:flex-row lg:space-x-4 gap-4">
+              {/* Bar Chart Container */}
+              <div className="bg-white shadow rounded-lg p-4 flex-1">
+                <h3 className="text-lg font-semibold mb-4">Ministry Distribution</h3>
+                <div className="w-full h-80">
+                  <BarChart data={barChartData} />
+                </div>
+              </div>
+
+              {/* Pie Chart Container */}
+              <div className="bg-white shadow rounded-lg p-4 flex-1">
+                <h3 className="text-lg font-semibold mb-4">Church Wings</h3>
+                <div className="w-full h-80">
+                  <PieChart data={pieChartData} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Active Members List */}
+          <div className="bg-white shadow rounded-lg p-6 h-fit">
+            <h3 className="text-lg font-semibold">Birthdays in September</h3>
+            <Birthday />
+          </div>
+        </div>
       </div>
     </Layout>
-  )
+  );
 }
 
-export default Analytics
+export default Analytics;

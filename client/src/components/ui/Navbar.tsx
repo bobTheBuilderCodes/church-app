@@ -7,7 +7,7 @@ const navigation = [
   { name: 'Analytics', href: '/analytics', current: false },
   { name: 'Members', href: '/members', current: false },
   { name: 'Programs', href: '/programs', current: false },
-  { name: 'Finance', href: '/finance', current: false },
+  { name: 'Prayer Requests', href: '/prayer-requests', current: false },
 ]
 
 function classNames(...classes: string[]): string {
@@ -18,7 +18,7 @@ export default function Navbar() {
   const location = useLocation()
 
   return (
-    <Disclosure as="nav" className="bg-gray-800 z-50 h-[9vh]">
+    <Disclosure as="nav" className="bg-white z-50 h-[9vh] border-b-2 border-gray-100 sticky top-0">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -46,8 +46,8 @@ export default function Navbar() {
                     to={item.href}
                     className={classNames(
                       location.pathname === item.href
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        ? 'bg-indigo-600 text-white'
+                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-500',
                       'rounded-md px-3 py-2 text-sm font-medium'
                     )}
                     aria-current={location.pathname === item.href ? 'page' : undefined}
@@ -61,7 +61,7 @@ export default function Navbar() {
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button
               type="button"
-              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="relative rounded-full bg-indigo-800 p-1 text-gray-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>

@@ -4,9 +4,9 @@ import Navbar from '../components/ui/Navbar';
 // Layout Component
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-300">
       <Navbar />
-      <main className="flex-1 bg-gray-50 p-8">
+      <main className="flex-1 bg-gray-100 p-8">
         {children}
       </main>
     </div>

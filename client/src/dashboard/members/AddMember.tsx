@@ -9,7 +9,7 @@ export default function AddMember() {
 
   return (
     <Layout>
-      <div className="isolate px-6  sm:py-32 lg:px-8">
+      <div className=" isolate px-6  sm:py-32 md:py-4 lg:px-8">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"

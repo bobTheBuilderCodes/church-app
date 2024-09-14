@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../Layout";
 import { members } from "../../resources";
-import { useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 
@@ -16,21 +16,20 @@ interface Member {
   ministry: string;
 }
 
-// Define a default or empty array if members might be undefined
 const defaultMembers: Member[] = [];
 
-// Check for undefined or null
 const Members = () => {
-  // Ensure members is not undefined; use defaultMembers if needed
   const membersList = members || defaultMembers;
 
   const navigate = useNavigate();
 
+  const createMember = () => {
+    navigate('/add-member');
+  };
+
+
   return (
     <Layout>
-      {/* <section className="flex justify-between items-center">
-        
-      </section> */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold ml-8 mr-auto text-gray-900">
           All Members ({membersList.length})
@@ -45,8 +44,8 @@ const Members = () => {
             placeholder="Search by name"
             className="mb-2 px-4"
           />
-          <Button type="button" className="ml-3 w-fit mx-8">
-            New Member
+          <Button type="button" className="ml-3 w-fit mx-8" onClick={createMember}>
+           <Link to={'/add-member'}>New Member</Link>
           </Button>
         </div>
       </div>

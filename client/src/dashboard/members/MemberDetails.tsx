@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Button from "../ui/Button";
-import Layout from "../../dashboard/Layout";
-import MemberFinance from "./Finance";
-import PrayerRequest from "./PrayerRequests";
-import BasicInfo from "./BasicInfo";
-import Help from "./Help";
+import Button from "../../components/ui/Button";
+import Layout from "../Layout";
+import MemberFinance from "../../components/feature/Finance";
+import PrayerRequest from "../../components/feature/PrayerRequests";
+import BasicInfo from "../../components/feature/BasicInfo";
+import Help from "../../components/feature/Help";
 
 
 
@@ -37,10 +37,10 @@ const tabsInfo = [
       label: "Finance",
       content: < MemberFinance />,
     },
-    {
-      label: "Prayer Requests",
-      content: <PrayerRequest />,
-    },
+    // {
+    //   label: "Prayer Requests",
+    //   content: <PrayerRequest />,
+    // },
     {
       label: "Help",
       content: <Help />,
@@ -52,15 +52,15 @@ const MemberDetails: React.FC<VerticalTabsProps> = ({ tabs }) => {
 
   return (
    <Layout>
-     <div className="flex flex-col md:flex-row  justify-center">
+     <div className="flex flex-col md:flex-row justify-center">
       {/* Sidebar with Tab Labels */}
-      <div className="md:w-1/4 w-full bg-gray-100 p-2 md:border-r h-[87vh] flex flex-col justify-between">
+      <div className="md:w-1/4 w-full p-6 rounded-lg shadow-lg shadow-gray-100 mt-3 md:h-[84vh] h-auto flex flex-col justify-between bg-white">
         {/* Tab Buttons */}
         <div>
           {tabsInfo.map((tab, index) => (
             <button
               key={index}
-              className={`w-full text-left py-2 px-4 mb-2 rounded-lg transition-colors ${
+              className={`w-full text-left py-2 px-3 mb-2 rounded-lg transition-colors ${
                 activeTab === index
                   ? "bg-indigo-600 text-white"
                   : "bg-white hover:bg-gray-200"
@@ -81,7 +81,7 @@ const MemberDetails: React.FC<VerticalTabsProps> = ({ tabs }) => {
       </div>
 
       {/* Content Area */}
-      <div className="md:w-3/4 w-full bg-white py-3">
+      <div className="md:w-3/4 w-full mx-0">
         {tabsInfo[activeTab].content}
       </div>
     </div>

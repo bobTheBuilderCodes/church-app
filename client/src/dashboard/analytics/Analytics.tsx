@@ -30,7 +30,7 @@ const Analytics: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {/* Graph Area */}
           <div className="lg:col-span-3 space-y-4">
-            <div className="bg-white shadow rounded-lg p-4 h-auto">
+            <div className="bg-white shadow-xl shadow-gray-100 rounded-lg p-4 h-auto">
               <h3 className="text-lg font-semibold">Church Membership</h3>
               <div className="w-full h-80">
                 <LineChart chartData={chartData} chartOptions={chartOptions} />
@@ -40,7 +40,7 @@ const Analytics: React.FC = () => {
             {/* Container for Bar and Pie Charts */}
             <div className="flex flex-col lg:flex-row lg:space-x-4 gap-4">
               {/* Bar Chart Container */}
-              <div className="bg-white shadow rounded-lg p-4 flex-1">
+              <div className="bg-white shadow-xl shadow-gray-100 rounded-lg p-4 flex-1">
                 <h3 className="text-lg font-semibold mb-4">Ministry Distribution</h3>
                 <div className="w-full h-80">
                   <BarChart data={barChartData} />
@@ -48,7 +48,7 @@ const Analytics: React.FC = () => {
               </div>
 
               {/* Pie Chart Container */}
-              <div className="bg-white shadow rounded-lg p-4 flex-1">
+              <div className="bg-white shadow-xl shadow-gray-100 rounded-lg p-4 flex-1">
                 <h3 className="text-lg font-semibold mb-4">Church Wings</h3>
                 <div className="w-full h-80">
                   <PieChart data={pieChartData} />
@@ -58,7 +58,7 @@ const Analytics: React.FC = () => {
           </div>
 
           {/* Active Members List */}
-          <div className="bg-white shadow rounded-lg p-6 h-fit">
+          <div className="bg-white shadow-xl shadow-gray-100 rounded-lg p-6 h-fit">
             <h3 className="text-lg font-semibold">Birthdays in September</h3>
             <Birthday />
           </div>

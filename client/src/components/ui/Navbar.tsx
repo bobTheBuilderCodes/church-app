@@ -18,8 +18,8 @@ export default function Navbar() {
   const location = useLocation()
 
   return (
-    <Disclosure as="nav" className="bg-white z-50 h-[9vh] border-b-2 border-gray-100 sticky top-0">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <Disclosure as="nav" className="bg-white z-10 h-[9vh] border-b-2 border-gray-100 sticky top-0">
+      <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button */}
@@ -69,7 +69,7 @@ export default function Navbar() {
             </button>
 
             {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
+            <Menu as="div" className="relative ml-3 ">
               <div>
                 <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   <span className="absolute -inset-1.5" />
@@ -106,7 +106,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
+      <DisclosurePanel className="sm:hidden bg-indigo-900">
         <div className="space-y-1 px-2 pb-3 pt-2">
           {navigation.map((item) => (
             <DisclosureButton
@@ -115,8 +115,8 @@ export default function Navbar() {
               to={item.href}
               className={classNames(
                 location.pathname === item.href
-                  ? 'bg-gray-900 text-white'
-                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                  ? 'bg-indigo-700 text-white'
+                  : 'text-gray-300 hover:bg-indigo-700 hover:text-white',
                 'block rounded-md px-3 py-2 text-base font-medium'
               )}
               aria-current={location.pathname === item.href ? 'page' : undefined}

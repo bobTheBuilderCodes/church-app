@@ -10,8 +10,8 @@ import Analytics from "./dashboard/analytics/Analytics";
 import AddMember from "./dashboard/members/AddMember";
 import PageNotFound from "./dashboard/PageNotFound";
 import MemberDetails from "./dashboard/members/MemberDetails";
-import PrayerRequest from "./components/feature/PrayerRequests";
 import Prayer from "./dashboard/prayer/Prayer";
+import AddProgram from "./dashboard/programs/AddProgram";
 
 const App = () => {
   return (
@@ -34,6 +34,7 @@ const App = () => {
           
           <Route path="/add-member" element={<AddMember />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/add-program" element={<AddProgram />} />
           <Route path="/prayer-requests" element={<Prayer />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>

@@ -19,7 +19,7 @@ const Analytics: React.FC = () => {
     <Layout>
       <div className="md:px-6 space-y-6">
         {/* Top Section: Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-3">
           <Card title="Total Members" value="150" icon={user} />
           <Card title="Active Members" value="80" icon={user} />
           <Card title="Donations Received" value="GHC 12,340" icon={user} />
@@ -27,7 +27,7 @@ const Analytics: React.FC = () => {
         </div>
 
         {/* Middle Section: Graphs and Active Members */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mx-3">
           {/* Graph Area */}
           <div className="lg:col-span-3 space-y-4">
             <div className="bg-white shadow-xl shadow-gray-100 rounded-lg p-4 h-auto">
@@ -59,7 +59,8 @@ const Analytics: React.FC = () => {
 
           {/* Active Members List */}
           <div className="bg-white shadow-xl shadow-gray-100 rounded-lg p-6 h-fit">
-            <h3 className="text-lg font-semibold">Birthdays in September</h3>
+            <h3 className="text-lg font-semibold mb-4">Birthdays in September</h3>
+            <hr />
             <Birthday />
           </div>
         </div>

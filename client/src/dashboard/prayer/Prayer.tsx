@@ -6,23 +6,20 @@ import Input from '../../components/ui/Input'
 const Prayer = () => {
   return (
     <Layout>
-       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold ml-8 mr-auto text-gray-900">
+       <div className="flex items-center justify-between mb-8 mx-5 flex-wrap">
+        <h1 className="text-2xl font-bold text-gray-900">
           All Prayer Requests 
           {/* ({membersList.length}) */}
         </h1>
-        <div className="flex items-center justify-end mx-4 min-w-[390px]">
-          <Input
+        <Input
             type="search"
             id="search"
             name="search"
             autoComplete="true"
             label=""
-            placeholder="Search by name"
-            className="mb-2 px-4"
+            placeholder="Search by member name"
+            className="" 
           />
-          
-        </div>
       </div>
       <PrayerRequest />
     </Layout>

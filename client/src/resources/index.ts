@@ -3,60 +3,161 @@ export const images = {
 }
 
 export const members = [
-    {
-      id: 1,
-      name: 'Potinge Philomena',
-      href: '#',
-      imageSrc: 'https://media.istockphoto.com/id/1146745072/photo/african-athletic-man-portrait.jpg?s=612x612&w=0&k=20&c=s5aMnbBNhFanlsgWGHG02fEb8qezqCIfphIGYWhG7ZU=',
-      imageAlt: "Philomena Potinge",
-      ministry: 'Youth',
-      phoneNumber: '024 567 5943',
-    },
-   
-  
-    {
-        id: 2,
-        name: 'Potinge Philomena',
-        href: '#',
-        imageSrc: 'https://media.istockphoto.com/id/1146745072/photo/african-athletic-man-portrait.jpg?s=612x612&w=0&k=20&c=s5aMnbBNhFanlsgWGHG02fEb8qezqCIfphIGYWhG7ZU=',
-        imageAlt: "Philomena Potinge",
-        ministry: 'Youth',
-        phoneNumber: '024 567 5943',
-      },
-   
-  
-      {
-        id: 3,
-        name: 'Potinge Philomena',
-        href: '#',
-        imageSrc: 'https://media.istockphoto.com/id/1146745072/photo/african-athletic-man-portrait.jpg?s=612x612&w=0&k=20&c=s5aMnbBNhFanlsgWGHG02fEb8qezqCIfphIGYWhG7ZU=',
-        imageAlt: "Philomena Potinge",
-        ministry: 'Youth',
-        phoneNumber: '024 567 5943',
-      },,
-      {
-        id: 4,
-        name: 'Potinge Philomena',
-        href: '#',
-        imageSrc: 'https://media.istockphoto.com/id/1146745072/photo/african-athletic-man-portrait.jpg?s=612x612&w=0&k=20&c=s5aMnbBNhFanlsgWGHG02fEb8qezqCIfphIGYWhG7ZU=',
-        imageAlt: "Philomena Potinge",
-        ministry: 'Youth',
-        phoneNumber: '024 567 5943',
-      },,
-    // More members...
+  {
+    id: 1,
+    name: 'Potinge Philomena',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee',
+    imageAlt: 'Philomena Potinge',
+    ministry: 'Youth',
+    phoneNumber: '024 567 5943',
+  },
+  {
+    id: 2,
+    name: 'Kwame Boateng',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6',
+    imageAlt: 'Kwame Boateng',
+    ministry: 'Men\'s Fellowship',
+    phoneNumber: '024 123 4567',
+  },
+  {
+    id: 3,
+    name: 'Akosua Asare',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61',
+    imageAlt: 'Akosua Asare',
+    ministry: 'Women\'s Ministry',
+    phoneNumber: '024 987 6543',
+  },
+  {
+    id: 4,
+    name: 'Yaw Osei',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1517841905240-472988babdf9',
+    imageAlt: 'Yaw Osei',
+    ministry: 'Evangelism',
+    phoneNumber: '024 765 4321',
+  },
+  {
+    id: 5,
+    name: 'Serwaa Mensah',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1',
+    imageAlt: 'Serwaa Mensah',
+    ministry: 'Choir',
+    phoneNumber: '024 332 1123',
+  },
+  {
+    id: 6,
+    name: 'Kofi Antwi',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+    imageAlt: 'Kofi Antwi',
+    ministry: 'Ushering',
+    phoneNumber: '024 876 5432',
+  },
+  {
+    id: 7,
+    name: 'Ama Nkrumah',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2',
+    imageAlt: 'Ama Nkrumah',
+    ministry: 'Children\'s Ministry',
+    phoneNumber: '024 121 1112',
+  },
+  {
+    id: 8,
+    name: 'Kojo Mensah',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde',
+    imageAlt: 'Kojo Mensah',
+    ministry: 'Technical Team',
+    phoneNumber: '024 333 4444',
+  },
+  {
+    id: 9,
+    name: 'Adjoa Addai',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef',
+    imageAlt: 'Adjoa Addai',
+    ministry: 'Women\'s Ministry',
+    phoneNumber: '024 555 6666',
+  },
+  {
+    id: 10,
+    name: 'Michael Dapaah',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb',
+    imageAlt: 'Michael Dapaah',
+    ministry: 'Youth',
+    phoneNumber: '024 777 8888',
+  },
+  {
+    id: 11,
+    name: 'Dela Afriyie',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe',
+    imageAlt: 'Dela Afriyie',
+    ministry: 'Choir',
+    phoneNumber: '024 876 4321',
+  },
+  {
+    id: 12,
+    name: 'Akwasi Appiah',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1532074205216-d0e1f4b0fbab',
+    imageAlt: 'Akwasi Appiah',
+    ministry: 'Evangelism',
+    phoneNumber: '024 444 5678',
+  },
+  {
+    id: 13,
+    name: 'Gifty Owusu',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6',
+    imageAlt: 'Gifty Owusu',
+    ministry: 'Women\'s Ministry',
+    phoneNumber: '024 876 1111',
+  },
+  {
+    id: 14,
+    name: 'Samuel Adjei',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
+    imageAlt: 'Samuel Adjei',
+    ministry: 'Ushering',
+    phoneNumber: '024 111 2222',
+  },
+  {
+    id: 15,
+    name: 'Mercy Dede',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1562074289-632d5dcd1f95',
+    imageAlt: 'Mercy Dede',
+    ministry: 'Youth',
+    phoneNumber: '024 232 3434',
+  },
+  {
+    id: 16,
+    name: 'Kwabena Kyei',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1562074289-632d5dcd1f95',
+    imageAlt: 'Kwabena Kyei',
+    ministry: 'Men\'s Fellowship',
+    phoneNumber: '024 444 5555',
+  },
+  {
+    id: 17,
+    name: 'Selasi Fafa',
+    href: '#',
+    imageSrc: 'https://images.unsplash.com/photo-1517841905240-472988bab',
+    imageAlt: 'Selasi Fafa',
+    ministry: 'Men\'s Fellowship',
+    phoneNumber: '058 695 3943'
+  }
   ]
-
-  const member = {
-    id: '1',
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@example.com',
-    phone: '555-1234',
-    membershipStatus: 'Active',
-    involvement: ['Choir', 'Bible Study Group', 'Youth Fellowship'],
-    joinDate: '2020-05-15',
-  };
-
+ 
 
   export const chartData = {
     labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
@@ -275,5 +376,98 @@ export const prayerRequests = [
     description: "Pray for a peaceful resolution to a family conflict.",
     date: "October 10, 2024",
     avatar: "https://example.com/avatar25.jpg",
+  },
+];
+
+export const churchEvents = [
+  {
+    id: 1,
+    title: "Sunday Worship Service",
+    date: "2024-09-15",
+    time: "10:00 AM",
+    venue: "Main Sanctuary",
+    description: "Join us for a powerful time of worship and fellowship.",
+    imageUrl: "https://images.unsplash.com/photo-1651492111555-8be7d155c189?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fENodXJjaCUyMHBpY3R1cmVzfGVufDB8fDB8fHww", // Worship Service Image
+  },
+  {
+    id: 2,
+    title: "Midweek Prayer Meeting",
+    date: "2024-09-20",
+    time: "7:00 PM",
+    venue: "Prayer Room",
+    description: "An evening dedicated to prayer and spiritual growth.",
+    imageUrl: "https://images.unsplash.com/photo-1519491050282-cf00c82424b4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fENodXJjaCUyMHBpY3R1cmVzfGVufDB8fDB8fHww", // Men's Breakfast Image
+  },
+  {
+    id: 3,
+    title: "Youth Fellowship Night",
+    date: "2024-09-22",
+    time: "5:00 PM",
+    venue: "Youth Hall",
+    description: "Youth gathering for worship, word, and fun activities.",
+    imageUrl: "https://images.unsplash.com/photo-1669644289033-67e143793ebc?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Q2h1cmNoJTIwcGljdHVyZXN8ZW58MHx8MHx8fDA%3D", // Youth Fellowship Image
+  },
+  {
+    id: 4,
+    title: "Men's Breakfast Meeting",
+    date: "2024-09-25",
+    time: "8:00 AM",
+    venue: "Community Hall",
+    description: "A special gathering for men with breakfast and discussions.",
+    imageUrl: "https://images.unsplash.com/photo-1576502200916-3808e07386a5", // Men's Breakfast Image
+  },
+  {
+    id: 5,
+    title: "Women's Conference",
+    date: "2024-09-28",
+    time: "9:00 AM",
+    venue: "Main Auditorium",
+    description: "Empowering women through faith and leadership teachings.",
+    imageUrl: "https://plus.unsplash.com/premium_photo-1676576742250-1293c94c1a65?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fENodXJjaCUyMHBpY3R1cmVzfGVufDB8fDB8fHww", // Women's Conference Image
+  },
+  {
+    id: 6,
+    title: "Marriage Enrichment Seminar",
+    date: "2024-10-01",
+    time: "6:30 PM",
+    venue: "Conference Room 3",
+    description: "An insightful seminar for couples to strengthen their marriages.",
+    imageUrl: "https://plus.unsplash.com/premium_photo-1723826751660-717811d0fbc6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8", // Marriage Seminar Image
+  },
+  {
+    id: 7,
+    title: "Children's Bible School",
+    date: "2024-10-05",
+    time: "10:00 AM",
+    venue: "Children's Church",
+    description: "A fun and engaging bible school for kids of all ages.",
+    imageUrl: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Children's Bible School Image
+  },
+  {
+    id: 8,
+    title: "Church Picnic",
+    date: "2024-10-10",
+    time: "12:00 PM",
+    venue: "Riverside Park",
+    description: "A family-friendly church picnic with games and fellowship.",
+    imageUrl: "https://images.unsplash.com/photo-1573421706309-8e71afba54a3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Q2h1cmNoJTIwcGljdHVyZXN8ZW58MHx8MHx8fDA%3D", // Church Picnic Image
+  },
+  {
+    id: 9,
+    title: "Thanksgiving Service",
+    date: "2024-10-15",
+    time: "9:00 AM",
+    venue: "Main Sanctuary",
+    description: "A service to give thanks for the blessings of the year.",
+    imageUrl: "https://images.unsplash.com/photo-1520629716099-d147346eb224?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fENodXJjaCUyMHBpY3R1cmVzfGVufDB8fDB8fHww", // Thanksgiving Service Image
+  },
+  {
+    id: 10,
+    title: "Christmas Eve Candlelight Service",
+    date: "2024-12-24",
+    time: "6:00 PM",
+    venue: "Main Sanctuary",
+    description: "Celebrate the birth of Christ in a beautiful candlelight service.",
+    imageUrl: "https://images.unsplash.com/photo-1531944252668-83d381a30b26?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Q2h1cmNoJTIwcGljdHVyZXN8ZW58MHx8MHx8fDA%3D", // Christmas Eve Image
   },
 ];

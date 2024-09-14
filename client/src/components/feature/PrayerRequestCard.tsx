@@ -23,6 +23,7 @@ const PrayerRequestCard: React.FC<PrayerRequestCardProps> = ({ request }) => {
       </div>
 
       {/* Description */}
+      
       <p className="text-gray-600 flex-grow">{request.description}</p>
 
       {/* Button */}

@@ -47,7 +47,7 @@ export default function Signin() {
                 type="email"
                 label="Email address"
                 autoComplete="email"
-                required
+                // required
               />
               <Input
                 id="password"
@@ -55,9 +55,11 @@ export default function Signin() {
                 type="password"
                 label="Password"
                 autoComplete="current-password"
-                required
+                // required
               />
-              <Button type="submit">Sign in</Button>
+              <Button type="submit" >
+                <a href="/analytics">Sign in</a>
+                </Button>
             </form>
 
             <p className="mt-10 text-center text-sm text-gray-500">

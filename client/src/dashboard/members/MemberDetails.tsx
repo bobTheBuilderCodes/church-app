@@ -252,12 +252,8 @@ const ProfileCard = () => {
         </div>
       </div>
 
-      <Button
-        type="button"
-        className="fixed bottom-4 right-4 z-30 w-[140px] sm:hidden bg-indigo-500 text-white p-4 "
-      >
-        <Link to={"/add-program"}>Record Tithe</Link>
-      </Button>
+      <Link className="fixed bottom-20 right-4 z-30 sm:hidden bg-indigo-600 rounded-lg text-white px-4 py-2" to={"/add-program"}>Record Tithe</Link>
+
 
     </Layout>
   );

@@ -14,25 +14,25 @@ const MobileNavigationTabs = () => {
     { id: 'prayer-requests', icon: '🙏', label: 'Prayers' }
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
 
-      // Show/hide the navigation based on scroll direction
-      if (currentScrollY > lastScrollY) {
-        setIsVisible(false); // Scrolling down
-      } else {
-        setIsVisible(true); // Scrolling up
-      }
+  //     // Show/hide the navigation based on scroll direction
+  //     if (currentScrollY > lastScrollY) {
+  //       setIsVisible(false); // Scrolling down
+  //     } else {
+  //       setIsVisible(true); // Scrolling up
+  //     }
 
-      setLastScrollY(currentScrollY);
-    };
+  //     setLastScrollY(currentScrollY);
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [lastScrollY]);
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [lastScrollY]);
 
   useEffect(() => {
     const currentPath = location.pathname.split('/')[1];

@@ -35,7 +35,7 @@ export default function Signin() {
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Welcome to ALBC Platform
+              Welcome to ALBC Platform...
             </h2>
           </div>
 

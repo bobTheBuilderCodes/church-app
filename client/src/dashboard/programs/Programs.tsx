@@ -17,25 +17,37 @@ const ChurchEventsPage: React.FC = () => {
 
   return (
     <Layout>
-      <div className="flex items-center justify-between mb-8 flex-wrap ">
-        <h1 className="text-2xl font-bold ml-8 mr-auto text-gray-900">
-          All Church programs 
-          ({churchEvents?.length})
-        </h1>
+      <div className="flex items-center justify-between mb-24 flex-wrap ">
+      <h1 className="text-2xl font-bold ml-4 sm:ml-8 mb-4 mr-auto text-gray-900">
+  All Church Programs ({churchEvents.length})
+</h1>
+
         <div className="flex items-center mx-0 justify-between min-w-[390px]">
-          <Input
+        <Input
             type="search"
             id="search"
             name="search"
             autoComplete="true"
             label=""
-            placeholder="Search by program name"
-            className="mb-2 px-4"
+            placeholder="Search by name"
+            className="mb-2 w-[94vw] mx-3 sm:w-auto px-4"
           />
-          <Button type="button" className="ml-3 w-fit mx-8">
-           <Link to={'/add-program'}>New Program</Link>
+          <Button type="button" className="ml-3 hidden sm:block w-fit mx-8">
+            <Link to={"/add-program"}>New Program</Link>
           </Button>
         </div>
+
+ {/* Floating button for mobile view */}
+ <Button
+        type="button"
+        className="fixed bottom-20 right-4 z-30 w-[140px] sm:hidden bg-indigo-500 text-white p-4 "
+      >
+        <Link to={"/add-program"}>New Program</Link>
+      </Button>
+
+
+
+
       </div>
       <div className="min-h-screen bg-gray-100 p-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">

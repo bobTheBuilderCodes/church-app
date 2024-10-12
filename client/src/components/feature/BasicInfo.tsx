@@ -35,7 +35,7 @@ const BasicInfo: React.FC<MemberProfileProps> = ({ member }) => {
   return (
     <div className="container mx-auto px-8 text-gray-500">
       {/* Profile Header */}
-      <div className=" bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 border rounded-lg p-6 mb-6 flex items-center justify-between">
+      <div className=" bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 border rounded-lg p-6 mb-6 flex items-center justify-between">
         <div className="flex items-center text-white">
           <img
             src={member.avatar}

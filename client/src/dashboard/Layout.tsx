@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/ui/Navbar';
+import MobileNavigationTabs from '../components/shared/MobileTabs';
 
 // Layout Component
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -9,6 +10,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <main className="flex-1 bg-gray-100 py-8">
         {children}
       </main>
+      <MobileNavigationTabs />
     </div>
   );
 };

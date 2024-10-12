@@ -1,122 +1,266 @@
-import React, { useState } from "react";
-import Button from "../../components/ui/Button";
-import Layout from "../Layout";
-import MemberFinance from "../../components/feature/Finance";
-import BasicInfo from "../../components/feature/BasicInfo";
-import Help from "../../components/feature/Help";
-import { ConfirmationDialog } from "../../components/shared/Dailogue";
+import React, { useState } from 'react';
+import Layout from '../Layout';
+import Button from '../../components/ui/Button';
+import { Link } from 'react-router-dom';
 
-interface TabItem {
-  label: string;
-  content: React.ReactNode;
-}
+const ProfileCard = () => {
+  type Section = 'tithes' | 'prayer' | 'basicInfo'; // Add 'basicInfo' to the type
 
-interface VerticalTabsProps {
-  tabs?: TabItem[];
-}
+  const [activeTab, setActiveTab] = useState<Section>('basicInfo'); // Default to basicInfo
+  const [isAccordionOpen, setIsAccordionOpen] = useState({
+    tithes: false,
+    prayer: false,
+    basicInfo: false, // Add state for basicInfo accordion
+  });
 
-const tabsInfo = [
-  {
-    label: "Basic Info",
-    content: (
-      <BasicInfo
-        member={{
-          avatar: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Paul_Adefarasin.jpg",
-          firstName: "James",
-          lastName: "Patapaa",
-          email: "james.patapaa@gmail.com",
-          phone: "0245948393",
-          bio: "This is the man who works in every ministry.",
-          country: "Pipeano",
-          city: "Close to pentecost",
-          postalCode: "644",
-          taxId: "982",
-        }}
-      />
-    ),
-  },
-  {
-    label: "Finance",
-    content: <MemberFinance />,
-  },
-  {
-    label: "Help",
-    content: <Help />,
-  },
-];
-
-const MemberDetails: React.FC<VerticalTabsProps> = ({ tabs }) => {
-  const [activeTab, setActiveTab] = useState(0);
-  const [isDialogOpen, setDialogOpen] = useState(false); // State to control dialog visibility
-
-  // Handle delete account button click
-  const handleDeleteClick = () => {
-    setDialogOpen(true); // Open the confirmation dialog
-  };
-
-  // Handle confirmation actions
-  const handleConfirm = () => {
-    // Add delete logic here
-    console.log("Account deleted");
-    setDialogOpen(false); // Close the dialog after confirmation
-  };
-
-  const handleCancel = () => {
-    setDialogOpen(false); // Close the dialog when canceled
+  const toggleAccordion = (section: Section) => {
+    setIsAccordionOpen((prevState) => ({
+      ...prevState,
+      [section]: !prevState[section],
+    }));
   };
 
   return (
     <Layout>
-      <div className="flex flex-col md:flex-row justify-center">
-        {/* Sidebar with Tab Labels */}
-        <div className="md:w-1/4 w-full p-6 rounded-lg shadow-lg shadow-gray-100 mt-3 md:h-[84vh] h-auto flex flex-col justify-between bg-white">
-          {/* Tab Buttons */}
-          <div>
-            {tabsInfo.map((tab, index) => (
-              <button
-                key={index}
-                className={`w-full text-left py-2 px-3 mb-2 rounded-lg transition-colors ${
-                  activeTab === index
-                    ? "bg-indigo-600 text-white"
-                    : "bg-white hover:bg-gray-200"
-                }`}
-                onClick={() => setActiveTab(index)}
-              >
-                {tab.label}
-              </button>
-            ))}
+      <div className="w-full p-6 rounded-lg mb-12">
+        {/* Profile Section */}
+        <div className="flex flex-col items-center bg-white py-6 rounded-lg">
+          <div className="relative -mt-16">
+            <img
+              className="w-40 h-40 rounded-md object-cover border-4 border-white shadow-lg"
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Paul_Adefarasin.jpg"
+              alt="Kwesi Arthur Emmanuel"
+            />
+          </div>
+          <h2 className="text-xl font-bold mt-3">Kwesi Arthur Emmanuel</h2>
+          <p className="text-gray-500 text-sm">Joined 2021 • Youth Organiser</p>
+        </div>
+
+        {/* Tab View for Desktop */}
+        <div className="hidden lg:block mt-6">
+          <div className="flex border-b">
+            <button
+              onClick={() => setActiveTab('basicInfo')}
+              className={`flex-1 py-2 px-4 ${
+                activeTab === 'basicInfo'
+                  ? 'border-b-2 border-indigo-600 text-indigo-600'
+                  : 'text-gray-500'
+              }`}
+            >
+              Basic Information
+            </button>
+            <button
+              onClick={() => setActiveTab('tithes')}
+              className={`flex-1 py-2 px-4 ${
+                activeTab === 'tithes'
+                  ? 'border-b-2 border-indigo-600 text-indigo-600'
+                  : 'text-gray-500'
+              }`}
+            >
+              Tithes and Donations
+            </button>
+            <button
+              onClick={() => setActiveTab('prayer')}
+              className={`flex-1 py-2 px-4 ${
+                activeTab === 'prayer'
+                  ? 'border-b-2 border-indigo-600 text-indigo-600'
+                  : 'text-gray-500'
+              }`}
+            >
+              Prayer Requests
+            </button>
           </div>
 
-          {/* Delete Account Button - Hidden on Mobile */}
-          <div className="mt-auto hidden md:block">
-            <Button
-              className="text-red-500 bg-red-500 w-full"
-              type="button"
-              onClick={handleDeleteClick} // Open the dialog on click
-            >
-              Delete Account
-            </Button>
+          <div className="mt-4">
+            {activeTab === 'basicInfo' && (
+              <div className="p-4 bg-white shadow rounded-lg">
+                <p className="font-semibold">Basic Information Details</p>
+              </div>
+            )}
+            {activeTab === 'tithes' && (
+              <div className="p-4 bg-white shadow rounded-lg">
+                <p className="font-semibold">Tithes Details</p>
+              </div>
+            )}
+            {activeTab === 'prayer' && (
+              <div className="p-4 bg-white shadow rounded-lg">
+                <p className="font-semibold">Prayer Request Details</p>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Content Area */}
-        <div className="md:w-3/4 w-full mx-0">{tabsInfo[activeTab].content}</div>
+        {/* Accordion View for Mobile */}
+        <div className="block lg:hidden mt-6">
+          <div className="space-y-4">
+            {/* Basic Information Accordion */}
+            <div>
+              <button
+                onClick={() => toggleAccordion('basicInfo')}
+                className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
+              >
+                <span className="flex items-center">
+                  <span className="bg-indigo-100 p-3 rounded-full">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-indigo-500"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M10 4a6 6 0 10.001 12.001A6 6 0 0010 4z" />
+                      <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 10.414L5.586 12l-1.414 1.414 4.414 4.414L15.414 12l-1.414-1.414-4.414 4.414z" />
+                    </svg>
+                  </span>
+                  <span className="ml-3 font-semibold text-gray-700">
+                    Basic Information
+                  </span>
+                </span>
+                {/* Chevron icon based on the accordion state */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
+                    isAccordionOpen.basicInfo ? 'rotate-90' : ''
+                  }`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isAccordionOpen.basicInfo ? 'max-h-40' : 'max-h-0'
+                }`}
+              >
+                <div className="p-4 mt-2">
+                  <p className="font-semibold">Basic Information Details</p>
+                </div>
+              </div>
+            </div>
 
-        {/* Confirmation Dialog */}
-        {isDialogOpen && ( // Ensure the dialog is only rendered when open
-          <ConfirmationDialog
-            isOpen={isDialogOpen} // Bind the dialog visibility to the state
-            title="Delete account"
-            message="Are you sure you want to delete this account? Every data about this member will be permanently removed. This action cannot be undone."
-            confirmButtonText="Yes, Delete"
-            cancelButtonText="Cancel"
-            onConfirm={handleConfirm} // Handle confirm action
-            onCancel={handleCancel}   // Handle cancel action
-          />
-        )}
+            {/* Tithes and Donations Accordion */}
+            <div>
+              <button
+                onClick={() => toggleAccordion('tithes')}
+                className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
+              >
+                <span className="flex items-center">
+                  <span className="bg-green-100 p-3 rounded-full">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-green-500"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M9 12H7v2h2v-2zm0-4H7v2h2V8zm0 8H7v2h2v-2z" />
+                      <path
+                        fillRule="evenodd"
+                        d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2H5zM3 5a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V5zm14 4h-2v4h2V9z"
+                      />
+                    </svg>
+                  </span>
+                  <span className="ml-3 font-semibold text-gray-700">
+                    Tithes & Donations
+                  </span>
+                </span>
+                {/* Chevron icon based on the accordion state */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
+                    isAccordionOpen.tithes ? 'rotate-90' : ''
+                  }`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isAccordionOpen.tithes ? 'max-h-40' : 'max-h-0'
+                }`}
+              >
+                <div className="p-4 mt-2">
+                  <p className="font-semibold">Tithes lists / history</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Prayer Accordion */}
+            <div>
+              <button
+                onClick={() => toggleAccordion('prayer')}
+                className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
+              >
+                <span className="flex items-center">
+                  <span className="bg-red-100 p-3 rounded-full">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-red-500"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M5 5h10v10H5z" />
+                      <path d="M9 2a1 1 0 00-1 1v2H6a1 1 0 00-1 1v2h2v2H4a1 1 0 00-1 1v2h12v-2a1 1 0 00-1-1h-2v-2h2V6a1 1 0 00-1-1h-2V3a1 1 0 00-1-1H9z" />
+                    </svg>
+                  </span>
+                  <span className="ml-3 font-semibold text-gray-700">
+                    Prayer Requests
+                  </span>
+                </span>
+                {/* Chevron icon based on the accordion state */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
+                    isAccordionOpen.prayer ? 'rotate-90' : ''
+                  }`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  isAccordionOpen.prayer ? 'max-h-40' : 'max-h-0'
+                }`}
+              >
+                <div className="p-4 mt-2">
+                  <p className="font-semibold">Prayer Request Details</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <Button
+        type="button"
+        className="fixed bottom-4 right-4 z-30 w-[140px] sm:hidden bg-indigo-500 text-white p-4 "
+      >
+        <Link to={"/add-program"}>Record Tithe</Link>
+      </Button>
+
     </Layout>
   );
 };
 
-export default MemberDetails;
+export default ProfileCard;

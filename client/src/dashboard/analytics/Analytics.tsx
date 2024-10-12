@@ -17,7 +17,7 @@ const user = (
 const Analytics: React.FC = () => {
   return (
     <Layout>
-      <div className="md:px-6 space-y-6">
+      <div className="mb-24 md:px-6 space-y-6">
         {/* Top Section: Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-3">
           <Card title="Total Members" value="150" icon={user} />

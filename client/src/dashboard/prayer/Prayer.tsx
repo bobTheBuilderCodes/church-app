@@ -6,10 +6,9 @@ import Input from '../../components/ui/Input'
 const Prayer = () => {
   return (
     <Layout>
-       <div className="flex items-center justify-between mb-8 mx-5 flex-wrap">
-        <h1 className="text-2xl font-bold text-gray-900">
+       <div className="flex items-center justify-between mb-4 flex-wrap">
+       <h1 className="text-2xl font-bold ml-4 sm: mb-4 mr-auto text-gray-900">
           All Prayer Requests 
-          {/* ({membersList.length}) */}
         </h1>
         <Input
             type="search"
@@ -18,7 +17,7 @@ const Prayer = () => {
             autoComplete="true"
             label=""
             placeholder="Search by member name"
-            className="" 
+            className="mb-2 w-[94vw] mx-3 sm:w-auto px-4"
           />
       </div>
       <PrayerRequest />

@@ -24,11 +24,13 @@ const Members = () => {
 
   return (
     <Layout>
-      <div className="flex items-center justify-between flex-wrap ">
-        <h1 className="text-2xl font-bold ml-8 mr-auto text-gray-900">
+      <div className="mb-24 flex items-center justify-between flex-wrap ">
+        <h1 className="text-2xl font-bold ml-4 sm:ml-8 mb-4 mr-auto text-gray-900">
           All Members ({membersList.length})
         </h1>
-        <div className="flex items-center mx-0 justify-between min-w-[390px]">
+
+        <div className="flex items-center mx-0 justify-between w-full sm:w-auto">
+          {/* Adjust search input width on mobile */}
           <Input
             type="search"
             id="search"
@@ -36,17 +38,30 @@ const Members = () => {
             autoComplete="true"
             label=""
             placeholder="Search by name"
-            className="mb-2 px-4"
+            className="mb-2 w-[94vw] mx-3 sm:w-auto px-4"
           />
-          <Button type="button" className="ml-3 w-fit mx-8">
-            <Link to={'/add-member'}>New Member</Link>
+          {/* Button visible on larger screens */}
+          <Button type="button" className="ml-3 hidden sm:block w-fit mx-8">
+            <Link to={"/add-member"}>New Member</Link>
           </Button>
         </div>
       </div>
-      <div className="mt-6 mx-3 grid grid-cols-1 gap-x-6  gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:mx-8  xl:gap-x-8 ">
+
+      {/* Floating button for mobile view */}
+      <Button
+        type="button"
+        className="fixed bottom-20 right-4 z-30 w-[140px] sm:hidden bg-indigo-500 text-white p-4 "
+      >
+        <Link to={"/add-member"}>New Member</Link>
+      </Button>
+
+      <div className="mt-6 mx-3 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:mx-8 xl:gap-x-8">
         {membersList.map((member) => (
-  <MemberCard key={member.id} member={{ ...member, id: String(member.id) }} /> // Convert id to string
-  ))}
+          <MemberCard
+            key={member.id}
+            member={{ ...member, id: String(member.id) }}
+          /> // Convert id to string
+        ))}
       </div>
     </Layout>
   );

@@ -31,7 +31,7 @@ const ChurchProgramCard: React.FC<ChurchProgramProps> = ({
         {description && (
           <p className="text-gray-700 text-sm mt-2">{description}</p>
         )}
-        <div className="flex justify-between mt-4 text-sm text-blue-600">
+        <div className="flex justify-between mt-4 text-sm text-indigo-600">
           <button onClick={onEdit} className="hover:underline">
             Edit
           </button>

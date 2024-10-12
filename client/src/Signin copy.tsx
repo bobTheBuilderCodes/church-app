@@ -56,7 +56,7 @@ export default function App() {
   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
-    <div className="flex h-screen flex-1 flex-col justify-center items-center bg-blue-50 px-6 py-12 lg:px-8">
+    <div className="flex h-screen flex-1 flex-col justify-center items-center bg-indigo-50 px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           alt="ALBC"

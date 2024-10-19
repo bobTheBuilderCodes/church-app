@@ -8,7 +8,7 @@ interface ChurchMemberProps {
     date?: string;
     ministry: string;
     id: string;
-    imageAlt: string;
+    imageAlt?: string;
     imageSrc: string;
   };
 }

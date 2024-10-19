@@ -2,6 +2,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { images } from '../../resources'
 import { Link, useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 const navigation = [
   { name: 'Analytics', href: '/analytics', current: false },
@@ -16,6 +17,15 @@ function classNames(...classes: string[]): string {
 
 export default function Navbar() {
   const location = useLocation()
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen)
+  }
+
+  const closeDrawer = () => {
+    setIsDrawerOpen(false)
+  }
 
   return (
     <Disclosure as="nav" className="bg-white z-10 h-[9vh] border-b-2 border-gray-100 sticky top-0">
@@ -62,6 +72,7 @@ export default function Navbar() {
             <button
               type="button"
               className="relative rounded-full bg-indigo-800 p-1 text-gray-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              onClick={toggleDrawer}
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
@@ -126,6 +137,34 @@ export default function Navbar() {
           ))}
         </div>
       </DisclosurePanel>
+
+      {/* Notification Drawer */}
+      <div
+        className={`fixed inset-y-0 right-0 z-20 w-full max-w-md bg-white shadow-lg transition-transform transform ${
+          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+        } sm:max-w-md sm:w-full duration-300 ease-in-out`}
+      >
+        <div className="flex items-center justify-between p-4 border-b">
+          <h2 className="text-lg font-medium text-gray-900">Notifications</h2>
+          <button
+            onClick={closeDrawer}
+            className="text-gray-600 hover:text-gray-800"
+          >
+            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
+        <div className="p-4">
+          <p className="text-sm text-gray-700">You have no new notifications.</p>
+        </div>
+      </div>
+
+      {/* Background overlay when the drawer is open */}
+      {isDrawerOpen && (
+        <div
+          className="fixed inset-0 z-10 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out"
+          onClick={closeDrawer}
+        />
+      )}
     </Disclosure>
   )
 }

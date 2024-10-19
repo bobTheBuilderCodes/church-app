@@ -18,11 +18,12 @@ const ChurchEventsPage: React.FC = () => {
   return (
     <Layout>
       <div className="flex items-center justify-between mb-4 flex-wrap ">
-        <h1 className="text-2xl font-bold ml-4 sm:ml-8 mb-4 mr-auto text-gray-900">
-          All Church Programs ({churchEvents.length})
+      <h1 className="text-2xl font-bold ml-4 sm:ml-8 mb-4 mr-auto text-gray-900">
+          All Chruch Events ({churchEvents.length})
         </h1>
 
-        <div className="flex items-center justify-between min-w-[390px]">
+        <div className="flex items-center mx-0 justify-between w-full sm:w-auto">
+          {/* Adjust search input width on mobile */}
           <Input
             type="search"
             id="search"
@@ -30,7 +31,7 @@ const ChurchEventsPage: React.FC = () => {
             autoComplete="true"
             label=""
             placeholder="Search by name"
-            className="mb-2 mx-3 sm:w-[99vw] px-4"
+            className="mb-2 w-[94vw] mx-3 sm:w-auto px-4"
           />
           <Button type="button" className="ml-3 hidden sm:block w-fit mx-8">
             <Link to={"/add-program"}>New Program</Link>

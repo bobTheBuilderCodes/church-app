@@ -79,7 +79,7 @@ const Analytics: React.FC = () => {
           {/* Active Members List */}
           <div className="bg-white shadow-xl shadow-gray-100 rounded-lg p-6 h-fit">
             <h3 className="text-lg font-semibold mb-4">
-              Birthdays in September
+              Birthdays in October
             </h3>
             <hr />
             <ul role="list" className="divide-y divide-gray-100">

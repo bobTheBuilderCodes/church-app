@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
-import Layout from '../Layout';
-import Button from '../../components/ui/Button';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import Layout from "../Layout";
+import { Link, useParams } from "react-router-dom";
+import TitheRecordCard from "./Tithes";
+import Input from "../../components/ui/Input";
+import Button from "../../components/ui/Button";
+import BasicInfoItem from "./BasicInfoItem";
+import BasicInfoCard from "./BasicInfoItem";
 
 const ProfileCard = () => {
-  type Section = 'tithes' | 'prayer' | 'basicInfo'; // Add 'basicInfo' to the type
+  type Section = "tithes" | "prayer" | "basicInfo";
 
-  const [activeTab, setActiveTab] = useState<Section>('basicInfo'); // Default to basicInfo
+  const [activeTab, setActiveTab] = useState<Section>("basicInfo");
   const [isAccordionOpen, setIsAccordionOpen] = useState({
     tithes: false,
     prayer: false,
-    basicInfo: false, // Add state for basicInfo accordion
+    basicInfo: false,
   });
 
   const toggleAccordion = (section: Section) => {
@@ -20,51 +24,114 @@ const ProfileCard = () => {
     }));
   };
 
+  const { id } = useParams();
+
+  interface Member {
+    _id: string;
+    name: string;
+    phoneNumber: string;
+    imageSrc: string;
+    ministry: string;
+  }
+
+  interface Member {
+    id: string;
+    name: string;
+    gender: string
+    phoneNumber: string;
+    email: string
+    address: string
+    dateJoined: string
+    dob: string
+    imageSrc: string;
+    ministry: string;
+  }
+
+  const [memberData, setMemberData] = useState<Member>();
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
+  // Function to fetch members
+  const fetchMemberData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5001/api/v1/members/${id}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch members");
+      }
+
+      const data = await response.json();
+      setMemberData(data);
+      setIsLoading(false);
+    } catch (err: any) {
+      setFetchError(err.message);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMemberData();
+  }, []);
+
+  // Conditional rendering based on the loading and error state
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (fetchError) {
+    return <p>Error: {fetchError}</p>;
+  }
+
+
   return (
     <Layout>
       <div className="w-full p-6 rounded-lg mb-12">
         {/* Profile Section */}
-        <div className="flex flex-col items-center bg-white py-6 rounded-lg">
+        <div className="flex flex-col items-center py-6 rounded-lg " style={{ backgroundImage: "linear-gradient(to top, rgba(0, 0, 0, 0.0), rgba(0, 0, 115, 0.9)), url('/images/ALBC.jpg')" , backgroundPosition: "30% 55%", backgroundSize: "99%", backgroundRepeat: "no-repeat"}}>
           <div className="relative -mt-16">
             <img
               className="w-40 h-40 rounded-md object-cover border-4 border-white shadow-lg"
-              src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Paul_Adefarasin.jpg"
-              alt="Kwesi Arthur Emmanuel"
+              src={memberData?.imageSrc}
+              alt={memberData?.name}
             />
           </div>
-          <h2 className="text-xl font-bold mt-3">Kwesi Arthur Emmanuel</h2>
-          <p className="text-gray-500 text-sm">Joined 2021 • Youth Organiser</p>
+          <h2 className="text-xl font-bold mt-3 text-gray-50">{memberData?.name}</h2>
+          <p className="text-gray-50 text-sm">
+            {memberData?.phoneNumber} • {memberData?.ministry}
+          </p>
+          <button className=" bg-white px-3 mt-4 mb-4 py-2 rounded-md">Edit Profile</button>
         </div>
 
         {/* Tab View for Desktop */}
         <div className="hidden lg:block mt-6">
           <div className="flex border-b">
             <button
-              onClick={() => setActiveTab('basicInfo')}
+              onClick={() => setActiveTab("basicInfo")}
               className={`flex-1 py-2 px-4 ${
-                activeTab === 'basicInfo'
-                  ? 'border-b-2 border-indigo-600 text-indigo-600'
-                  : 'text-gray-500'
+                activeTab === "basicInfo"
+                  ? "border-b-2 border-indigo-600 text-indigo-600"
+                  : "text-gray-500"
               }`}
             >
               Basic Information
             </button>
             <button
-              onClick={() => setActiveTab('tithes')}
+              onClick={() => setActiveTab("tithes")}
               className={`flex-1 py-2 px-4 ${
-                activeTab === 'tithes'
-                  ? 'border-b-2 border-indigo-600 text-indigo-600'
-                  : 'text-gray-500'
+                activeTab === "tithes"
+                  ? "border-b-2 border-indigo-600 text-indigo-600"
+                  : "text-gray-500"
               }`}
             >
               Tithes and Donations
             </button>
             <button
-              onClick={() => setActiveTab('prayer')}
+              onClick={() => setActiveTab("prayer")}
               className={`flex-1 py-2 px-4 ${
-                activeTab === 'prayer'
-                  ? 'border-b-2 border-indigo-600 text-indigo-600'
-                  : 'text-gray-500'
+                activeTab === "prayer"
+                  ? "border-b-2 border-indigo-600 text-indigo-600"
+                  : "text-gray-500"
               }`}
             >
               Prayer Requests
@@ -72,17 +139,45 @@ const ProfileCard = () => {
           </div>
 
           <div className="mt-4">
-            {activeTab === 'basicInfo' && (
-              <div className="p-4 bg-white shadow rounded-lg">
-                <p className="font-semibold">Basic Information Details</p>
+            {activeTab === "basicInfo" && (
+              <div className="p-8 bg-white rounded-lg grid grid-cols-3 ">
+               {/* <BasicInfoCard member={memberData}/> */}
+               {memberData && <BasicInfoCard member={memberData} />}
+
               </div>
             )}
-            {activeTab === 'tithes' && (
-              <div className="p-4 bg-white shadow rounded-lg">
-                <p className="font-semibold">Tithes Details</p>
+            {activeTab === "tithes" && (
+              <div className="p-4 bg-white  rounded-lg">
+                <div className=" flex items-center justify-between flex-wrap ">
+                  <h1 className="text-xl font-bold sm:ml-0 mr-auto text-gray-900">
+                    All {memberData?.name}'s Tithes
+                  </h1>
+
+                  <div className="flex items-center justify-between w-full sm:w-auto">
+                    <Input
+                      type="search"
+                      id="search"
+                      name="search"
+                      autoComplete="true"
+                      label=""
+                      placeholder="Search by title"
+                      className="mb-2 w-[94vw] mx-3 sm:w-auto px-4"
+                    />
+                    <Button
+                      type="button"
+                      className="ml-3 hidden sm:block w-fit"
+                    >
+                      New Record
+                    </Button>
+                  </div>
+                </div>
+                <TitheRecordCard type="special offering" />
+                <TitheRecordCard />
+                <TitheRecordCard />
+                <TitheRecordCard />
               </div>
             )}
-            {activeTab === 'prayer' && (
+            {activeTab === "prayer" && (
               <div className="p-4 bg-white shadow rounded-lg">
                 <p className="font-semibold">Prayer Request Details</p>
               </div>
@@ -96,7 +191,7 @@ const ProfileCard = () => {
             {/* Basic Information Accordion */}
             <div>
               <button
-                onClick={() => toggleAccordion('basicInfo')}
+                onClick={() => toggleAccordion("basicInfo")}
                 className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
               >
                 <span className="flex items-center">
@@ -119,7 +214,7 @@ const ProfileCard = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
-                    isAccordionOpen.basicInfo ? 'rotate-90' : ''
+                    isAccordionOpen.basicInfo ? "rotate-90" : ""
                   }`}
                   fill="none"
                   viewBox="0 0 24 24"
@@ -135,7 +230,7 @@ const ProfileCard = () => {
               </button>
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isAccordionOpen.basicInfo ? 'max-h-40' : 'max-h-0'
+                  isAccordionOpen.basicInfo ? "max-h-40" : "max-h-0"
                 }`}
               >
                 <div className="p-4 mt-2">
@@ -147,7 +242,7 @@ const ProfileCard = () => {
             {/* Tithes and Donations Accordion */}
             <div>
               <button
-                onClick={() => toggleAccordion('tithes')}
+                onClick={() => toggleAccordion("tithes")}
                 className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
               >
                 <span className="flex items-center">
@@ -173,7 +268,7 @@ const ProfileCard = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
-                    isAccordionOpen.tithes ? 'rotate-90' : ''
+                    isAccordionOpen.tithes ? "rotate-90" : ""
                   }`}
                   fill="none"
                   viewBox="0 0 24 24"
@@ -189,7 +284,7 @@ const ProfileCard = () => {
               </button>
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isAccordionOpen.tithes ? 'max-h-40' : 'max-h-0'
+                  isAccordionOpen.tithes ? "max-h-40" : "max-h-0"
                 }`}
               >
                 <div className="p-4 mt-2">
@@ -201,7 +296,7 @@ const ProfileCard = () => {
             {/* Prayer Accordion */}
             <div>
               <button
-                onClick={() => toggleAccordion('prayer')}
+                onClick={() => toggleAccordion("prayer")}
                 className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
               >
                 <span className="flex items-center">
@@ -224,7 +319,7 @@ const ProfileCard = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
-                    isAccordionOpen.prayer ? 'rotate-90' : ''
+                    isAccordionOpen.prayer ? "rotate-90" : ""
                   }`}
                   fill="none"
                   viewBox="0 0 24 24"
@@ -240,7 +335,7 @@ const ProfileCard = () => {
               </button>
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isAccordionOpen.prayer ? 'max-h-40' : 'max-h-0'
+                  isAccordionOpen.prayer ? "max-h-40" : "max-h-0"
                 }`}
               >
                 <div className="p-4 mt-2">
@@ -252,9 +347,12 @@ const ProfileCard = () => {
         </div>
       </div>
 
-      <Link className="fixed bottom-20 right-4 z-30 sm:hidden bg-indigo-600 rounded-lg text-white px-4 py-2" to={"/add-program"}>Record Tithe</Link>
-
-
+      <Link
+        className="fixed bottom-20 right-4 z-30 sm:hidden bg-indigo-600 rounded-lg text-white px-4 py-2"
+        to={"/add-program"}
+      >
+        Record Tithe
+      </Link>
     </Layout>
   );
 };

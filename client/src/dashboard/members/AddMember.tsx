@@ -1,16 +1,9 @@
 import { useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Switch } from "@headlessui/react";
 import Layout from "../Layout";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
-import { useAddChurchMemberMutation } from "../../services/members";
 import { useNavigate } from "react-router-dom";
-
-//Image Upload from cloudinary
-import { Cloudinary } from "@cloudinary/url-gen";
-import { auto } from "@cloudinary/url-gen/actions/resize";
-import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
-import { AdvancedImage } from "@cloudinary/react";
+import { toastify } from "../../helpers";
+import { useAddChurchMemberMutation } from "../../services/members";
 
 interface ChurchMemberProps {
   name: string;
@@ -27,13 +20,10 @@ interface ChurchMemberProps {
 }
 
 export default function AddMember() {
-  const [agreed, setAgreed] = useState(false);
   const [avatar, setAvatar] = useState<string | undefined>(undefined);
-  const [url, updateUrl] = useState();
-  const [error, updateError] = useState();
-  const [addChurchMember] = useAddChurchMemberMutation();
-  const navigate = useNavigate();
-  const cld = new Cloudinary({ cloud: { cloudName: "dacna6wyi" } });
+  const [isAddingChurchMember, setIsAddingChurchMember] = useState(false);
+  const navigate = useNavigate()
+  const [addChurchMember] = useAddChurchMemberMutation()
 
   const [formData, setFormData] = useState<ChurchMemberProps>({
     name: "",
@@ -49,16 +39,13 @@ export default function AddMember() {
     notes: "",
   });
 
-  //
-
-  
-
   const handleAddChurchMember: React.FormEventHandler<HTMLFormElement> = async (
     e
   ) => {
     e.preventDefault();
 
     try {
+      setIsAddingChurchMember(true);
       const response = await fetch("http://localhost:5001/api/v1/members", {
         method: "POST",
         headers: {
@@ -68,80 +55,103 @@ export default function AddMember() {
       });
 
       if (!response.ok) {
+        setIsAddingChurchMember(false);
         throw new Error("Network response was not ok");
       }
 
       const data = await response.json();
-      console.log("Payload", data);
+      toastify(data.message, { type: "success" });
+
+      setIsAddingChurchMember(true);
+
       navigate("/members");
-      // Optionally navigate or show success message
-    } catch (err) {
-      console.error("Error:", err);
+    } catch (err: any) {
+      if (err.data && err.data.message) {
+        toastify(err.data.message, { type: "error" });
+      } else if (err.status === "FETCH_ERROR") {
+        toastify("Network error: Unable to connect to the server", {
+          type: "error",
+        });
+      } else {
+        toastify("An unexpected error occurred", { type: "error" });
+      }
+    } finally {
+      setIsAddingChurchMember(false);
     }
   };
 
+
+  // const handleAddChurchMember: React.FormEventHandler<HTMLFormElement> = async (e) => {
+  //   e.preventDefault();
+   
+
+  //   try {
+  //     const response = await addChurchMember(formData).unwrap();
+  //     toastify(response.message, { type: "success" });
+  //     navigate("/members")
+  //     // setPageView(false);
+  //   } catch (err: any) {
+  //     if (err.data && err.data.message) {
+  //       toastify(err.data.message, { type: "error" });
+  //     } else if (err.status === "FETCH_ERROR") {
+  //       toastify("Network error: Unable to connect to the server", {
+  //         type: "error",
+  //       });
+  //     } else {
+  //       toastify("An unexpected error occurred", { type: "error" });
+  //     }
+  //   }
+  // };
+
+
+
   // Handle file upload and preview
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
-      // Step 1: Use FileReader to display local preview immediately
       const reader = new FileReader();
       reader.onload = () => {
-        setAvatar(reader.result as string); // Show local preview
+        setAvatar(reader.result as string);
       };
-      reader.readAsDataURL(file); // Read the file locally for preview
-  
-      // Step 2: Start background upload to Cloudinary
+      reader.readAsDataURL(file);
+
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "zh2m1ivz"); // Replace with your actual preset
-      formData.append("cloud_name", "dacna6wyi"); // Replace with your cloud name
-  
+      formData.append("upload_preset", "zh2m1ivz");
+      formData.append("cloud_name", "dacna6wyi");
+
       try {
-        const res = await fetch(`https://api.cloudinary.com/v1_1/dacna6wyi/image/upload`, {
-          method: "POST",
-          body: formData,
-        });
-  
+        const res = await fetch(
+          `https://api.cloudinary.com/v1_1/dacna6wyi/image/upload`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
         const data = await res.json();
-        const imageUrl = data.secure_url; // This is the URL of the uploaded image
-  
-        // Step 3: Replace local preview with Cloudinary URL once upload is done
+        const imageUrl = data.secure_url;
+
         setFormData((prev) => ({ ...prev, imageSrc: imageUrl }));
-        setAvatar(imageUrl); // Replace preview with actual Cloudinary URL
+        setAvatar(imageUrl);
       } catch (error) {
         console.error("Error uploading image to Cloudinary", error);
       }
     }
   };
-  
-  ;
 
-  // const img = cld
-  //   .image(avatar)
-  //   .format("auto")
-  //   .quality("auto")
-  //   .resize(auto().gravity(autoGravity()).width(500).height(500));
-
-  //   console.log("Image", img)
-
-  // Function to trigger file input click
   const triggerFileInput = () => {
     document.getElementById("fileInput")?.click();
   };
 
-  // Handle input change
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-
-
-
-
 
   return (
     <Layout>
@@ -163,13 +173,18 @@ export default function AddMember() {
             {/* Avatar Upload */}
             <div className="col-span-full">
               <div className="flex justify-center items-center gap-x-3">
-                {avatar ? 
-                  <img src={avatar} alt="Avatar" className="h-40 w-40 rounded-full object-cover" /> :
+                {avatar ? (
+                  <img
+                    src={avatar}
+                    alt="Avatar"
+                    className="h-40 w-40 rounded-full object-cover"
+                  />
+                ) : (
                   <UserCircleIcon
                     aria-hidden="true"
                     className="h-40 w-40 text-gray-300"
                   />
-                }
+                )}
                 <input
                   type="file"
                   id="fileInput"
@@ -185,8 +200,6 @@ export default function AddMember() {
                   Change
                 </button>
               </div>
-
-           
             </div>
 
             {/* Name */}
@@ -350,41 +363,13 @@ export default function AddMember() {
               </div>
             </div>
 
-            {/* Membership Status */}
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="membershipStatus"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Membership Status
-              </label>
-              {/* <div className="mt-2.5 flex items-center">
-                <Switch
-                  checked={formData.membershipStatus}
-                  onChange={handleMembershipStatusChange}
-                  className={`${
-                    formData.membershipStatus ? "bg-indigo-600" : "bg-gray-200"
-                  } relative inline-flex h-6 w-11 rounded-full`}
-                >
-                  <span
-                    className={`${
-                      formData.membershipStatus ? "translate-x-6" : "translate-x-1"
-                    } pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition ease-in-out duration-200`}
-                  />
-                </Switch>
-                <span className="ml-3 text-sm font-medium text-gray-900">
-                  {formData.membershipStatus ? "Active" : "Inactive"}
-                </span>
-              </div> */}
-            </div>
-
             {/* Notes Textarea */}
             <div className="sm:col-span-2">
               <label
                 htmlFor="notes"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                Notes
+                Description
               </label>
               <div className="mt-2.5">
                 <textarea
@@ -404,7 +389,7 @@ export default function AddMember() {
               type="submit"
               className="w-full rounded-md px-3.5 py-2.5 mt-6 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Add Member
+              {isAddingChurchMember ? "Adding Member..." : "Add Member"}
             </button>
           </div>
         </form>

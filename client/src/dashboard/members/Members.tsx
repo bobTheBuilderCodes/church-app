@@ -14,7 +14,7 @@ interface Member {
 }
 
 const Members = () => {
-  const [memberData, setMemberData] = useState<Member[]>([]); // Set type for member data
+  const [memberData, setMemberData] = useState<Member[]>([]); 
   const [isLoading, setIsLoading] = useState(true); 
   const [fetchError, setFetchError] = useState<string | null>(null); 
   const navigate = useNavigate()
@@ -22,8 +22,7 @@ const Members = () => {
   // Function to fetch members
   const fetchMemberData = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/v1/members'); // Use the correct API URL
-      
+      const response = await fetch('http://localhost:5001/api/v1/members'); 
       if (!response.ok) {
         throw new Error('Failed to fetch members');
       }

@@ -1,5 +1,7 @@
 import { parseISO, formatDistanceToNow } from 'date-fns';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+
 
 /**
  
@@ -23,4 +25,14 @@ export function formatCreatedAt(isoDate: string): string {
 
 
 
-
+export const toastify = (message: string, options = {}) => {
+    toast(message, {
+      position: "top-right",
+      autoClose: 5001,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      ...options,
+    });
+  };

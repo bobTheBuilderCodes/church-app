@@ -7,7 +7,7 @@ import churchMemberRoutes from './routers/members';
 dotenv.config();
 const PORT = process.env.PORT || 5001;
 
-const app = express();
+export const app = express();
 
 // Middleware
 app.use(express.json());

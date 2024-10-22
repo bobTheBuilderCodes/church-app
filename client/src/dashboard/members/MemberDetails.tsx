@@ -87,6 +87,7 @@ const ProfileCard = () => {
   return (
     <Layout>
       <div className="w-full p-6 rounded-lg mb-12">
+        
         {/* Profile Section */}
         <div className="flex flex-col items-center py-6 rounded-lg " style={{ backgroundImage: "linear-gradient(to top, rgba(0, 0, 0, 0.0), rgba(0, 0, 115, 0.9)), url('/images/ALBC.jpg')" , backgroundPosition: "30% 55%", backgroundSize: "99%", backgroundRepeat: "no-repeat"}}>
           <div className="relative -mt-16">

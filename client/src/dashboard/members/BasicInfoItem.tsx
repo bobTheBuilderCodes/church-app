@@ -33,7 +33,7 @@ const formatDate = (dateString: string) => {
 
 const BasicInfoCard: React.FC<BasicInfoCardProps> = ({ member }) => {
   return (
-    <div className="grid grid-cols-3 gap-4 w-[90vw]">
+    <div className="grid grid-cols-1 p-4 md:grid-cols-3 gap-4 w-[90vw]">
       <InfoCard label="Name" value={member.name} />
       <InfoCard label="Email" value={member.email} />
       <InfoCard label="Gender" value={member.gender} />

@@ -4,25 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import TitheRecordCard from "./Tithes";
 import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
-import BasicInfoItem from "./BasicInfoItem";
 import BasicInfoCard from "./BasicInfoItem";
+import PrayerRequestItem from "./PrayerRequestItem";
 
 const ProfileCard = () => {
   type Section = "tithes" | "prayer" | "basicInfo";
 
   const [activeTab, setActiveTab] = useState<Section>("basicInfo");
-  const [isAccordionOpen, setIsAccordionOpen] = useState({
-    tithes: false,
-    prayer: false,
-    basicInfo: false,
-  });
-
-  const toggleAccordion = (section: Section) => {
-    setIsAccordionOpen((prevState) => ({
-      ...prevState,
-      [section]: !prevState[section],
-    }));
-  };
 
   const { id } = useParams();
 
@@ -37,12 +25,12 @@ const ProfileCard = () => {
   interface Member {
     id: string;
     name: string;
-    gender: string
+    gender: string;
     phoneNumber: string;
-    email: string
-    address: string
-    dateJoined: string
-    dob: string
+    email: string;
+    address: string;
+    dateJoined: string;
+    dob: string;
     imageSrc: string;
     ministry: string;
   }
@@ -83,13 +71,20 @@ const ProfileCard = () => {
     return <p>Error: {fetchError}</p>;
   }
 
-
   return (
     <Layout>
       <div className="w-full p-6 rounded-lg mb-12">
-        
         {/* Profile Section */}
-        <div className="flex flex-col items-center py-6 rounded-lg " style={{ backgroundImage: "linear-gradient(to top, rgba(0, 0, 0, 0.0), rgba(0, 0, 115, 0.9)), url('/images/ALBC.jpg')" , backgroundPosition: "30% 55%", backgroundSize: "99%", backgroundRepeat: "no-repeat"}}>
+        <div
+          className="flex flex-col items-center py-6 rounded-lg "
+          style={{
+            backgroundImage:
+              "linear-gradient(to top, rgba(0, 0, 0, 0.0), rgba(0, 0, 115, 0.9)), url('/images/ALBC.jpg')",
+            backgroundPosition: "30% 55%",
+            backgroundSize: "99%",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <div className="relative -mt-16">
             <img
               className="w-40 h-40 rounded-md object-cover border-4 border-white shadow-lg"
@@ -97,11 +92,15 @@ const ProfileCard = () => {
               alt={memberData?.name}
             />
           </div>
-          <h2 className="text-xl font-bold mt-3 text-gray-50">{memberData?.name}</h2>
+          <h2 className="text-xl font-bold mt-3 text-gray-50">
+            {memberData?.name}
+          </h2>
           <p className="text-gray-50 text-sm">
             {memberData?.phoneNumber} • {memberData?.ministry}
           </p>
-          <button className=" bg-white px-3 mt-4 mb-4 py-2 rounded-md">Edit Profile</button>
+          <button className=" bg-white px-3 mt-4 mb-4 py-2 rounded-md">
+            Edit Profile
+          </button>
         </div>
 
         {/* Tab View for Desktop */}
@@ -142,9 +141,8 @@ const ProfileCard = () => {
           <div className="mt-4">
             {activeTab === "basicInfo" && (
               <div className="p-8 bg-white rounded-lg grid grid-cols-3 ">
-               {/* <BasicInfoCard member={memberData}/> */}
-               {memberData && <BasicInfoCard member={memberData} />}
-
+                {/* <BasicInfoCard member={memberData}/> */}
+                {memberData && <BasicInfoCard member={memberData} />}
               </div>
             )}
             {activeTab === "tithes" && (
@@ -179,8 +177,39 @@ const ProfileCard = () => {
               </div>
             )}
             {activeTab === "prayer" && (
-              <div className="p-4 bg-white shadow rounded-lg">
-                <p className="font-semibold">Prayer Request Details</p>
+              <div className="bg-white">
+                <div className=" flex items-center justify-between flex-wrap mx-4 pt-5">
+                  <h1 className="text-xl font-bold sm:ml-0 mr-auto text-gray-900">
+                    All {memberData?.name}'s Prayer Requests
+                  </h1>
+
+                  <div className="flex items-center justify-between w-full sm:w-auto">
+                    <Input
+                      type="search"
+                      id="search"
+                      name="search"
+                      autoComplete="true"
+                      label=""
+                      placeholder="Search by title"
+                      className="mb-2 w-[94vw] mx-3 sm:w-auto px-4"
+                    />
+                    <Button
+                      type="button"
+                      className="ml-3 hidden sm:block w-fit"
+                    >
+                      New Record
+                    </Button>
+                  </div>
+                </div>
+                <div className="p-4 rounded-lg grid grid-cols-3 gap-5 -mt-3">
+                  <PrayerRequestItem />
+                  <PrayerRequestItem />
+                  <PrayerRequestItem />
+                  <PrayerRequestItem />
+                  <PrayerRequestItem />
+                  <PrayerRequestItem />
+                  <PrayerRequestItem />
+                </div>
               </div>
             )}
           </div>
@@ -191,158 +220,77 @@ const ProfileCard = () => {
           <div className="space-y-4">
             {/* Basic Information Accordion */}
             <div>
-              <button
-                onClick={() => toggleAccordion("basicInfo")}
-                className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
-              >
-                <span className="flex items-center">
-                  <span className="bg-indigo-100 p-3 rounded-full">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-indigo-500"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M10 4a6 6 0 10.001 12.001A6 6 0 0010 4z" />
-                      <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 10.414L5.586 12l-1.414 1.414 4.414 4.414L15.414 12l-1.414-1.414-4.414 4.414z" />
-                    </svg>
+              <Link to={`/members/${id}/basic-info`}>
+                <button className="flex items-center justify-between w-full p-4 bg-white rounded-lg">
+                  <span className="flex items-center">
+                    <span className="bg-indigo-100 p-3 rounded-full">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-indigo-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M10 4a6 6 0 10.001 12.001A6 6 0 0010 4z" />
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 10.414L5.586 12l-1.414 1.414 4.414 4.414L15.414 12l-1.414-1.414-4.414 4.414z" />
+                      </svg>
+                    </span>
+                    <span className="ml-3 font-semibold text-gray-700">
+                      Basic Information
+                    </span>
                   </span>
-                  <span className="ml-3 font-semibold text-gray-700">
-                    Basic Information
-                  </span>
-                </span>
-                {/* Chevron icon based on the accordion state */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
-                    isAccordionOpen.basicInfo ? "rotate-90" : ""
-                  }`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-              <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isAccordionOpen.basicInfo ? "max-h-40" : "max-h-0"
-                }`}
-              >
-                <div className="p-4 mt-2">
-                  <p className="font-semibold">Basic Information Details</p>
-                </div>
-              </div>
+                </button>
+              </Link>
             </div>
 
             {/* Tithes and Donations Accordion */}
             <div>
-              <button
-                onClick={() => toggleAccordion("tithes")}
-                className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
-              >
-                <span className="flex items-center">
-                  <span className="bg-green-100 p-3 rounded-full">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-green-500"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M9 12H7v2h2v-2zm0-4H7v2h2V8zm0 8H7v2h2v-2z" />
-                      <path
-                        fillRule="evenodd"
-                        d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2H5zM3 5a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V5zm14 4h-2v4h2V9z"
-                      />
-                    </svg>
+              <Link to={`/members/${id}/tithes`}>
+                <button className="flex items-center justify-between w-full p-4 bg-white rounded-lg">
+                  <span className="flex items-center">
+                    <span className="bg-green-100 p-3 rounded-full">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-green-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M9 12H7v2h2v-2zm0-4H7v2h2V8zm0 8H7v2h2v-2z" />
+                        <path
+                          fillRule="evenodd"
+                          d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2H5zM3 5a1 1 0 011-1h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V5zm14 4h-2v4h2V9z"
+                        />
+                      </svg>
+                    </span>
+                    <span className="ml-3 font-semibold text-gray-700">
+                      Tithes & Donations
+                    </span>
                   </span>
-                  <span className="ml-3 font-semibold text-gray-700">
-                    Tithes & Donations
-                  </span>
-                </span>
-                {/* Chevron icon based on the accordion state */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
-                    isAccordionOpen.tithes ? "rotate-90" : ""
-                  }`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-              <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isAccordionOpen.tithes ? "max-h-40" : "max-h-0"
-                }`}
-              >
-                <div className="p-4 mt-2">
-                  <p className="font-semibold">Tithes lists / history</p>
-                </div>
-              </div>
+                </button>
+              </Link>
             </div>
 
             {/* Prayer Accordion */}
             <div>
-              <button
-                onClick={() => toggleAccordion("prayer")}
-                className="flex items-center justify-between w-full p-4 bg-white rounded-lg"
-              >
-                <span className="flex items-center">
-                  <span className="bg-red-100 p-3 rounded-full">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-red-500"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path d="M5 5h10v10H5z" />
-                      <path d="M9 2a1 1 0 00-1 1v2H6a1 1 0 00-1 1v2h2v2H4a1 1 0 00-1 1v2h12v-2a1 1 0 00-1-1h-2v-2h2V6a1 1 0 00-1-1h-2V3a1 1 0 00-1-1H9z" />
-                    </svg>
+              <Link to={`/members/${id}/prayer-requests`}>
+                <button className="flex items-center justify-between w-full p-4 bg-white rounded-lg">
+                  <span className="flex items-center">
+                    <span className="bg-red-100 p-3 rounded-full">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-red-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M5 5h10v10H5z" />
+                        <path d="M9 2a1 1 0 00-1 1v2H6a1 1 0 00-1 1v2h2v2H4a1 1 0 00-1 1v2h12v-2a1 1 0 00-1-1h-2v-2h2V6a1 1 0 00-1-1h-2V3a1 1 0 00-1-1H9z" />
+                      </svg>
+                    </span>
+                    <span className="ml-3 font-semibold text-gray-700">
+                      Prayer Requests
+                    </span>
                   </span>
-                  <span className="ml-3 font-semibold text-gray-700">
-                    Prayer Requests
-                  </span>
-                </span>
-                {/* Chevron icon based on the accordion state */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-6 w-6 text-gray-400 transform transition-transform duration-300 ${
-                    isAccordionOpen.prayer ? "rotate-90" : ""
-                  }`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-              <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  isAccordionOpen.prayer ? "max-h-40" : "max-h-0"
-                }`}
-              >
-                <div className="p-4 mt-2">
-                  <p className="font-semibold">Prayer Request Details</p>
-                </div>
-              </div>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ interface InputProps {
   id: string;
   name: string;
   type: string;
-  label: string;
+  label?: string;
   autoComplete?: string;
   required?: boolean;
   placeholder?: string;

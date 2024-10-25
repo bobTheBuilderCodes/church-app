@@ -1,19 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2020",                        // ES2020 is a stable target for async/await support
-    "module": "CommonJS",                      // Use CommonJS modules for Node.js compatibility
-    "moduleResolution": "node",                // Ensure Node.js-style module resolution
-    "outDir": "./dist",                        // Output directory for compiled files
-    "rootDir": "./src",                        // Specify the root directory for source files
-    "strict": true,                            // Enable strict type checking
-    "esModuleInterop": true,                   // Compatibility between CommonJS and ES modules
-    "skipLibCheck": true,                      // Skip type checks for declaration files
-    "forceConsistentCasingInFileNames": true,  // Enforce consistent file name casing
-    "resolveJsonModule": true,                 // Allow importing .json files
-    "allowSyntheticDefaultImports": true,      // Allow default imports from modules with no default export
-    "noImplicitAny": false,                    // Optional: Loosen strict typing, if needed
-    "noEmitOnError": true                      // Optional: Prevent emitting files if there are type errors
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts"],                   // Include all TypeScript files in the src directory
-  "exclude": ["node_modules"]                   // Exclude node_modules
+  "include": ["./api/*.ts"],
+  "lib": ["es2015"]
 }

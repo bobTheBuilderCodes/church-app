@@ -13,7 +13,11 @@ export const app = express();
 app.use(express.json());
 app.use(cors());
 
+
 // Routes
+app.get("/", (req, res)=>{
+    res.send("Hello world")
+})
 app.use('/api/v1', churchMemberRoutes); 
 
 

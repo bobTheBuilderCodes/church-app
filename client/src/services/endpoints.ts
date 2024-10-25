@@ -1,4 +1,5 @@
-export const BASEURL = "http://loalhost:5001/api/v1"
+export const BASEURL = "https://church-server-18kviqkgr-bobthebuildercodes-projects.vercel.app/api/v1"
+
 
 
 

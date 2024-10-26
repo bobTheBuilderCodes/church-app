@@ -22,7 +22,7 @@ const Members = () => {
   // Function to fetch members
   const fetchMemberData = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/v1/members'); 
+      const response = await fetch('https://church-server-18kviqkgr-bobthebuildercodes-projects.vercel.app/api/v1/members'); 
       if (!response.ok) {
         throw new Error('Failed to fetch members');
       }

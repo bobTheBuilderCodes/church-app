@@ -35,12 +35,12 @@ export default function Signin() {
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Welcome to ALBC Platform...
+              Welcome to ALBC Platform
             </h2>
           </div>
 
           <div className="mt-10 w-full sm:w-full sm:max-w-sm mx-auto">
-            <form action="#" method="POST" className="space-y-6">
+            <form className="space-y-6">
               <Input
                 id="email"
                 name="email"

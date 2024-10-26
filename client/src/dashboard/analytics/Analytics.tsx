@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Layout";
 import Card from "../../components/ui/DashboardCard";
 import {
@@ -11,6 +11,8 @@ import {
 import LineChart from "../../components/feature/LineGraph";
 import BarChart from "../../components/feature/BarChart";
 import PieChart from "../../components/feature/PieChart";
+import { useNavigate } from "react-router-dom";
+import { getCurrentMonthBirthdays } from "../../helpers";
 
 // Icon for user
 
@@ -31,13 +33,59 @@ const user = (
   </svg>
 );
 
+interface Member {
+  _id: string;
+  name: string;
+  phoneNumber: string;
+  imageSrc: string;
+  ministry: string;
+  dateOfBirth: string
+}
+
 const Analytics: React.FC = () => {
+
+  const [memberData, setMemberData] = useState<Member[]>([]); 
+  const [isLoading, setIsLoading] = useState(true); 
+  const [fetchError, setFetchError] = useState<string | null>(null); 
+  const navigate = useNavigate()
+
+  // Function to fetch members
+  const fetchMemberData = async () => {
+    try {
+      const response = await fetch('https://church-server-18kviqkgr-bobthebuildercodes-projects.vercel.app/api/v1/members'); 
+      if (!response.ok) {
+        throw new Error('Failed to fetch members');
+      }
+
+      const data = await response.json();
+      setMemberData(data); // Set fetched data
+      setIsLoading(false);
+    } catch (err: any) {
+      setFetchError(err.message); // Set error message
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMemberData();
+  }, []);
+
+
+  const peoples = getCurrentMonthBirthdays(memberData)
+
+  console.log('All people', memberData)
+  console.log('Birthday people', peoples)
+
+
+
+
+
   return (
     <Layout>
       <div className="mb-24 md:px-6 space-y-6">
         {/* Top Section: Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-3">
-          <Card title="Total Members" value="150" icon={user} />
+          <Card title="Total Memberss" value={memberData.length} icon={user} />
           <Card title="Active Members" value="80" icon={user} />
           <Card title="Donations Received" value="GHC 12,340" icon={user} />
           <Card title="Upcoming Events" value="5" icon={user} />

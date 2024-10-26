@@ -36,3 +36,27 @@ export const toastify = (message: string, options = {}) => {
       ...options,
     });
   };
+
+
+
+  interface Member {
+    _id: string;
+    name: string;
+    phoneNumber: string;
+    imageSrc: string;
+    ministry: string;
+    dateOfBirth: string
+  }
+
+export function getCurrentMonthBirthdays(members: Member[]): Member[] {
+  const currentMonth = new Date().getMonth() + 1;
+
+  return members.filter((member) => {
+    const memberMonth = new Date(member.dateOfBirth).getMonth() + 1;
+    return memberMonth === currentMonth;
+  });
+}
+
+
+
+  

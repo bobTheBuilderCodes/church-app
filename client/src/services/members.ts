@@ -10,7 +10,7 @@ export const churchMembersAPI = createApi({
 
   reducerPath: "churchMembersAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://loalhost:5001/api/v1",
+    baseUrl: "https://church-server-18kviqkgr-bobthebuildercodes-projects.vercel.app/api/v1",
     // prepareHeaders: (headers, { getState }) => {
     //   const token = getAuthToken();
     //   if (token) {

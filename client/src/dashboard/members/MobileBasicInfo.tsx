@@ -30,7 +30,7 @@ const MobileBasicInfo = () => {
   const fetchMemberData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5001/api/v1/members/${id}`
+        `https://church-server-18kviqkgr-bobthebuildercodes-projects.vercel.app/api/v1/members/${id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch members");

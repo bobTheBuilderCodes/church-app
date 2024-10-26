@@ -46,7 +46,7 @@ export default function AddMember() {
 
     try {
       setIsAddingChurchMember(true);
-      const response = await fetch("http://localhost:5001/api/v1/members", {
+      const response = await fetch("https://church-server-18kviqkgr-bobthebuildercodes-projects.vercel.app/api/v1/members", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
